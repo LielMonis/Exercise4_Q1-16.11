@@ -29,6 +29,10 @@ class About_window (QWidget):
         self.linkedin.setGeometry(10,450,400,30)
         self.linkedin.setStyleSheet('font-size : 20px ; color : darkblue')
 
+        self.github = QLabel('<a href="https://github.com/LielMonis/Exercise4_Q1-16.11.git">To the project page</a>', self)
+        self.github.setOpenExternalLinks(True)
+        self.github.setGeometry(10,475,400,30)
+        self.github.setStyleSheet('font-size : 20px ; color : darkblue')
 
 if __name__ == '__main__':
     app = QApplication()
