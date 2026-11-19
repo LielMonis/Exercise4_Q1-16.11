@@ -107,7 +107,7 @@ class GradesWindow(QMainWindow):
 
     def add_bonus(self):
         for i in range(len(self.original_grades)):
-            self.corrected_grades[i] += self.bonus_input.value()
+            self.corrected_grades[i] = self.original_grades[i] + self.bonus_input.value()     #תמיד יוסיף את הבונוס לציון המקורי ולא לחדש
             if self.corrected_grades[i] > 100:      #מוודא שהציון לא עולה על 100
                 self.corrected_grades[i] = 100
 
