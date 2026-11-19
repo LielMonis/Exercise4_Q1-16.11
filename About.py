@@ -26,12 +26,12 @@ class About_window (QWidget):
 
         self.linkedin = QLabel('<a href="https://www.linkedin.com/in/liel-monis-4784043a6/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BaesurkA9QfaJFyu3eOxL7A%3D%3D">To my LinkedIn profile</a>', self)
         self.linkedin.setOpenExternalLinks(True)
-        self.linkedin.setGeometry(10,450,400,30)
+        self.linkedin.setGeometry(10,430,400,30)
         self.linkedin.setStyleSheet('font-size : 20px ; color : darkblue')
 
         self.github = QLabel('<a href="https://github.com/LielMonis/Exercise4_Q1-16.11.git">To the project page</a>', self)
         self.github.setOpenExternalLinks(True)
-        self.github.setGeometry(10,475,400,30)
+        self.github.setGeometry(10,460,400,30)
         self.github.setStyleSheet('font-size : 20px ; color : darkblue')
 
 if __name__ == '__main__':
