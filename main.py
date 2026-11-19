@@ -69,7 +69,7 @@ class GradesWindow(QMainWindow):
         #About section
         self.About = About_window()
 
-        #the lists that i need to open
+        #the lists that i need to creat
         self.student_ids = []
         self.original_grades = []
         self.corrected_grades = []
@@ -84,6 +84,24 @@ class GradesWindow(QMainWindow):
         self.selected_file = file_name
 
         # MY CODE HERE
+
+
+        with open(self.selected_file, 'r') as f:
+            next(f)             #מקדם אותנו שורה- קופץ מעל שורה אחת.
+            for line in f:
+                parts = line.split(',')
+                self.student_ids.append(int(parts[0]))         #הפיכה ממחרוזת של מספר ת"ז למספר שלם
+                self.original_grades.append(int(parts[1]))     #למרות שברכיב זה מופיעה פקודת ירידת השורה, ההגדרה כמספר שלם תמשוך רק את הציון
+                self.corrected_grades.append(int(parts[1])+ self.bonus_input.value())
+
+        self.update_table()
+
+
+
+
+
+
+
 
     def update_table(self):
         self.table.clearContents()
