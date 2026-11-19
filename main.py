@@ -129,7 +129,7 @@ class GradesWindow(QMainWindow):
             os.startfile(path)
         elif system == "Darwin":  # macOS
             subprocess.run(["open", path])
-        else:  # Linux
+        else:
             subprocess.run(["xdg-open", path])
 
     def show_about(self):
