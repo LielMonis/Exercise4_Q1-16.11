@@ -83,9 +83,6 @@ class GradesWindow(QMainWindow):
             return  # User pressed Cancel
         self.selected_file = file_name
 
-        # MY CODE HERE
-
-
         with open(self.selected_file, 'r') as f:
             next(f)             #מקדם אותנו שורה- קופץ מעל שורה אחת.
             self.student_ids = []         #שורות אלה יבטיחו כי הטבלה תתרוקן מהתוכן במצב של העלאת מספר קבצים אחד אחרי השני
@@ -109,8 +106,13 @@ class GradesWindow(QMainWindow):
                 self.table.setItem(row, 2, QTableWidgetItem(str(self.corrected_grades[row])))
 
     def add_bonus(self):
-        # MY CODE HERE
-        pass
+        for i in range(len(self.original_grades)):
+            self.corrected_grades[i] += self.bonus_input.value()
+            if self.corrected_grades[i] > 100:      #מוודא שהציון לא עולה על 100
+                self.corrected_grades[i] = 100
+
+        self.update_table()
+
 
     def update_file(self):
         # MY CODE HERE
