@@ -113,10 +113,14 @@ class GradesWindow(QMainWindow):
 
         self.update_table()
 
-
     def update_file(self):
-        # MY CODE HERE
-        pass
+        with open(self.selected_file, 'r') as f:
+            column_name = f.readline()      #קורא את שם העמודות ושומר אותן כמשתנה
+        with open(self.selected_file, 'w') as f:
+            f.write(column_name)             #כותב בשורה הראשונה את השם המקורי של העמודות
+            for i in range(len(self.student_ids)):
+                f.write(f"{self.student_ids[i]},{self.corrected_grades[i]}\n")
+        self.open_file(self.selected_file)
 
     def open_file(self, path):
         """Open a file in its default app (e.g. Excel for CSV files)."""
