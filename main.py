@@ -19,20 +19,19 @@ from PySide6.QtWidgets import (
     QMessageBox,
 )
 
-
 class GradesWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("Grades Manager")
         self.resize(600, 700)
 
-        # Data lists (filled later by load_file)
+        #Data lists (filled later by load_file)
         self.file_path = ""
         self.student_ids = []
         self.original_grades = []
         self.corrected_grades = []
 
-        # --- Buttons ---
+        #Buttons
         self.load_button = QPushButton("Load File")
         self.load_button.clicked.connect(self.load_file)
 
@@ -42,19 +41,19 @@ class GradesWindow(QMainWindow):
         self.about_button = QPushButton("About")
         self.about_button.clicked.connect(self.show_about)
 
-        # --- Bonus input ---
+        #Bonus input
         self.bonus_label = QLabel("Bonus points (press ENTER):")
         self.bonus_input = QSpinBox()
         self.bonus_input.setRange(0, 100)
         # returnPressed fires only when the user presses ENTER
         self.bonus_input.lineEdit().returnPressed.connect(self.add_bonus)
 
-        # --- Table ---
+        #Table
         self.table = QTableWidget(50, 3)
         self.table.setHorizontalHeaderLabels(["ID", "Original Grades", "Corrected Grades"])
         self.table.horizontalHeader().setStretchLastSection(True)
 
-        # --- Layouts ---
+        #Layouts
         top_layout = QHBoxLayout()
         top_layout.addWidget(self.load_button)
         top_layout.addWidget(self.update_button)
@@ -75,6 +74,12 @@ class GradesWindow(QMainWindow):
         
         #About section
         self.About = About_window()
+
+        #the lists that i need to open
+        self.student_ids = []
+        self.original_grades = []
+        self.corrected_grades = []
+        self.selected_file = ''
 
     def load_file(self):
         file_name, _ = QFileDialog.getOpenFileName(
