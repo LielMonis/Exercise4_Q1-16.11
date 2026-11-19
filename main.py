@@ -25,12 +25,6 @@ class GradesWindow(QMainWindow):
         self.setWindowTitle("Grades Manager")
         self.resize(600, 700)
 
-        #Data lists (filled later by load_file)
-        self.file_path = ""
-        self.student_ids = []
-        self.original_grades = []
-        self.corrected_grades = []
-
         #Buttons
         self.load_button = QPushButton("Load File")
         self.load_button.clicked.connect(self.load_file)
@@ -87,7 +81,7 @@ class GradesWindow(QMainWindow):
         )
         if not file_name:
             return  # User pressed Cancel
-        self.file_path = file_name
+        self.selected_file = file_name
 
         # MY CODE HERE
 
