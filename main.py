@@ -32,6 +32,9 @@ class GradesWindow(QMainWindow):
         self.update_button = QPushButton("Update File")
         self.update_button.clicked.connect(self.update_file)
 
+        self.clear_button = QPushButton("Clear")
+        self.clear_button.clicked.connect(self.clear_table)
+
         self.about_button = QPushButton("About")
         self.about_button.clicked.connect(self.show_about)
 
@@ -46,18 +49,24 @@ class GradesWindow(QMainWindow):
         self.table = QTableWidget(50, 3)
         self.table.setHorizontalHeaderLabels(["ID", "Original Grades", "Corrected Grades"])
         self.table.horizontalHeader().setStretchLastSection(True)
+        self.table.setAlternatingRowColors(True)
+        self.table.setEditTriggers(QTableWidget.NoEditTriggers)  # read-only table
 
         #Layouts
         top_layout = QHBoxLayout()
         top_layout.addWidget(self.load_button)
         top_layout.addWidget(self.update_button)
+        top_layout.addWidget(self.clear_button)
         top_layout.addWidget(self.about_button)
 
         bonus_layout = QHBoxLayout()
         bonus_layout.addWidget(self.bonus_label)
         bonus_layout.addWidget(self.bonus_input)
+        bonus_layout.addStretch()  # keeps the bonus input on the left
 
         main_layout = QVBoxLayout()
+        main_layout.setContentsMargins(16, 16, 16, 16)
+        main_layout.setSpacing(12)
         main_layout.addLayout(top_layout)
         main_layout.addLayout(bonus_layout)
         main_layout.addWidget(self.table)
@@ -113,7 +122,18 @@ class GradesWindow(QMainWindow):
 
         self.update_table()
 
+    def clear_table(self):
+        self.student_ids = []
+        self.original_grades = []
+        self.corrected_grades = []
+        self.selected_file = ''
+        self.bonus_input.setValue(0)
+        self.table.clearContents()
+
     def update_file(self):
+        if not self.selected_file:
+            QMessageBox.warning(self, "No file loaded", "Please load a CSV file first.")
+            return
         with open(self.selected_file, 'r') as f:
             column_name = f.readline()      #קורא את שם העמודות ושומר אותן כמשתנה
         with open(self.selected_file, 'w') as f:

@@ -12,11 +12,11 @@ QPushButton {
 }
 
 QPushButton:hover {
-    background-color: #22b55f;
+    background-color: #1e9e52;
 }
 
 QPushButton:pressed {
-    background-color: #22b55f;
+    background-color: #17803f;
 }
 
 QLabel {
@@ -31,8 +31,14 @@ QSpinBox {
 
 QTableWidget {
     background-color: white;
+    alternate-background-color: #f3faf5;
     gridline-color: #e3ede4;
     font-size: 13px;
+}
+
+QTableWidget::item:selected {
+    background-color: #c8eed3;
+    color: black;
 }
 
 QHeaderView::section {
