@@ -2,6 +2,7 @@ import os
 import sys
 import subprocess
 import platform
+from About import About_window
 
 from PySide6.QtWidgets import (
     QApplication,
@@ -71,6 +72,9 @@ class GradesWindow(QMainWindow):
         central_widget = QWidget()
         central_widget.setLayout(main_layout)
         self.setCentralWidget(central_widget)
+        
+        #About section
+        self.About = About_window()
 
     def load_file(self):
         file_name, _ = QFileDialog.getOpenFileName(
@@ -110,14 +114,7 @@ class GradesWindow(QMainWindow):
             subprocess.run(["xdg-open", path])
 
     def show_about(self):
-        QMessageBox.about(
-            self,
-            "About",
-            "Grades Manager\n\n"
-            "Created by: Liel Monis\n"
-            "GitHub: https://github.com/LielMonis/Exercise4_Q1-16.11",
-        )
-
+        self.About.show()
 
 def load_style(app):
     style_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "style.qss")
